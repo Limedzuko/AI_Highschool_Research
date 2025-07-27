@@ -122,7 +122,7 @@ from sklearn.metrics import mean_squared_error, r2_score
 # Define features (X) and target variable (y)
 X = df_encoded.drop(columns=['price'])  # Drop the target column 'price'
 y = df_encoded['price']
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=42)
 
 # Create a Linear Regression model
 model = LinearRegression()
@@ -174,10 +174,10 @@ poly = PolynomialFeatures(degree=2)
 X_poly = poly.fit_transform(X_scaled)
 
 # Train/test split
-X_train_poly, X_test_poly, y_train, y_test = train_test_split(X_poly, y_train, test_size=0.2, random_state=42)
+X_train_poly, X_test_poly, y_train, y_test = train_test_split(X_poly, y_train, test_size=0.1, random_state=42)
 
 # Linear Regression with Ridge regularization
-model = Ridge(alpha=2) #this is not the optimal hyperparameter onfiguration since none of the ridge models were the best
+model = Ridge(alpha=0.02) #this is not the optimal hyperparameter onfiguration since none of the ridge models were the best
 model.fit(X_train_poly, y_train)
 
 accuracy_train = model.score(X_train_poly, y_train)
